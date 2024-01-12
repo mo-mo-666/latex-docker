@@ -5,8 +5,12 @@ ARG TEXURL="ftp://tug.org/historic/systems/texlive/${TEXLIVE_VERSION}/tlnet-fina
 
 ENV PATH /usr/local/bin/texlive:$PATH
 WORKDIR /install-tl-unx
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
+# change mirror server
+RUN sed -i.org -e 's|archive.ubuntu.com|ubuntutym.u-toyama.ac.jp|g' /etc/apt/sources.list
+RUN apt-get update
+
+RUN apt-get install --no-install-recommends -y \
+    build-essential \
     perl \
     wget \
     xz-utils \
