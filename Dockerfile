@@ -18,6 +18,7 @@ RUN sed -i.org -e 's|archive.ubuntu.com|ubuntutym.u-toyama.ac.jp|g' /etc/apt/sou
     fontconfig \
     perl \
     cpanminus \
+    openssh-server \
     && apt-get clean \
     && apt-get autoremove -y \
     && apt-get autoclean -y \

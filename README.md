@@ -52,6 +52,7 @@ https://zenn.dev/rhene/scraps/182dff75bf7b64
 
 
 ## 環境について
+TeX Live 2022
 
 `.latexmkrc` と `.latexindentrc.yaml` はホームディレクトリにおいてあるが，上書き可能．
 
