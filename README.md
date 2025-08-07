@@ -67,9 +67,9 @@ docker pull ghcr.io/mo-mo-666/latex-ubuntu:<tagname>
 
 bashの場合
 ```bash
-docker run --rm -it -v $(pwd):/workdir
+docker run --rm -it -v $(pwd):/workdir ghcr.io/mo-mo-666/latex-ubuntu:<tagname>
 ```
 fishの場合
 ```fish
-docker run --rm -it -v (pwd):/workdir
+docker run --rm -it -v (pwd):/workdir ghcr.io/mo-mo-666/latex-ubuntu:<tagname>
 ```
