@@ -1,13 +1,13 @@
-FROM ubuntu:22.04@sha256:bbf3d1baa208b7649d1d0264ef7d522e1dc0deeeaaf6085bf8e4618867f03494
+FROM ubuntu:24.04
 
-ARG TEXLIVE_VERSION="2022"
+ARG TEXLIVE_VERSION="2024"
 ARG TEXURL="https://mirror.nju.edu.cn/tex-historic/systems/texlive/${TEXLIVE_VERSION}/tlnet-final"
 # see https://www.tug.org/historic/
 
 ENV PATH /usr/local/bin/texlive:$PATH
 WORKDIR /install-tl-unx
 # change mirror server
-RUN sed -i.org -e 's|archive.ubuntu.com|ubuntutym.u-toyama.ac.jp|g' /etc/apt/sources.list \
+RUN sed -i.bak -r 's@http://(jp\.)?archive\.ubuntu\.com/ubuntu/?@https://ftp.udx.icscoe.jp/Linux/ubuntu/@g' /etc/apt/sources.list.d/ubuntu.sources \
     && apt-get update \
     && apt-get install --no-install-recommends -y \
     build-essential \
@@ -28,6 +28,7 @@ COPY ./texlive.profile ./
 RUN wget -N --no-check-certificate ${TEXURL}/install-tl-unx.tar.gz \
     && tar xvf install-tl-unx.tar.gz --strip-components=1 \
     && ./install-tl --no-interaction --profile=texlive.profile -repository ${TEXURL} \
+    && rm /install-tl-unx.tar.gz \
     && rm -rf /install-tl-unx
 RUN ln -sf /usr/local/texlive/*/bin/* /usr/local/bin/texlive
 

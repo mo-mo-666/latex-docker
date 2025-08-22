@@ -73,3 +73,16 @@ fishの場合
 ```fish
 docker run --rm -it -v (pwd):/workdir ghcr.io/mo-mo-666/latex-ubuntu:<tagname>
 ```
+
+## インストール時のprofileファイルの作り方の例
+
+```bash
+TEXLIVE_VERSION="2024"
+TEXURL="https://mirror.nju.edu.cn/tex-historic/systems/texlive/${TEXLIVE_VERSION}/tlnet-final"
+
+wget -N --no-check-certificate ${TEXURL}/install-tl-unx.tar.gz
+tar xvf install-tl-unx.tar.gz --strip-components=1
+./install-tl -repository ${TEXURL}
+```
+
+あとは画面の指示に従って，最後`save installation profile to 'texlive.profile' and exit`を選択する．
