@@ -7,8 +7,8 @@ ARG TEXURL="https://mirror.nju.edu.cn/tex-historic/systems/texlive/${TEXLIVE_VER
 ENV PATH /usr/local/bin/texlive:$PATH
 WORKDIR /install-tl-unx
 # change mirror server
-RUN sed -i.bak -r 's@http://(jp\.)?archive\.ubuntu\.com/ubuntu/?@https://ftp.udx.icscoe.jp/Linux/ubuntu/@g' /etc/apt/sources.list.d/ubuntu.sources \
-    && apt-get update \
+# RUN sed -i.bak -r 's@http://(jp\.)?archive\.ubuntu\.com/ubuntu/?@https://ftp.udx.icscoe.jp/Linux/ubuntu/@g' /etc/apt/sources.list.d/ubuntu.sources \
+RUN apt-get update \
     && apt-get install --no-install-recommends -y \
     build-essential \
     git \
