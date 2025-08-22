@@ -59,7 +59,7 @@ jobs:
           build-args: |
             CACHE=${{ env.CACHE }}
             TAG=${{ env.TAG }}
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           outputs: |
             type=registry,push=true,ref=ghcr.io/mo-mo-666/latex-ubuntu:cache
             type=image,push=true,ref=ghcr.io/mo-mo-666/latex-ubuntu:${{ env.TAG }}
