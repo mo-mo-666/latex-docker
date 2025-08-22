@@ -28,8 +28,8 @@ COPY ./texlive.profile ./
 RUN wget -N --no-check-certificate ${TEXURL}/install-tl-unx.tar.gz \
     && tar xvf install-tl-unx.tar.gz --strip-components=1 \
     && ./install-tl --no-interaction --profile=texlive.profile -repository ${TEXURL} \
-    && rm /install-tl-unx.tar.gz \
     && rm -rf /install-tl-unx
+    # remove WORKDIR
 RUN ln -sf /usr/local/texlive/*/bin/* /usr/local/bin/texlive
 
 ENV LANG=ja_JP.UTF-8
