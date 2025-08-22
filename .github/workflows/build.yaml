@@ -13,16 +13,16 @@ on:
         required: true
         type: string
         default: 'latest'
-      # cache:
-      #   description: 'Cache'
-      #   required: true
-      #   type: boolean
-      #   default: true
+      cache:
+        description: 'Cache'
+        required: true
+        type: boolean
+        default: true
 
 env:
   PUSH: ${{ github.event.inputs.push }}
   TAG: ${{ github.event.inputs.tag }}
-  # CACHE: ${{ github.event.inputs.cache }}
+  CACHE: ${{ github.event.inputs.cache }}
 
 jobs:
   build:
@@ -54,3 +54,15 @@ jobs:
           context: .
           push: ${{ env.PUSH }}
           tags: ghcr.io/mo-mo-666/latex-ubuntu:${{ env.TAG }}
+          cache-from: ${{ env.CACHE && 'type=registry,ref=ghcr.io/mo-mo-666/latex-ubuntu:cache' || '' }}
+          cache-to: ${{ env.CACHE && 'type=registry,ref=ghcr.io/mo-mo-666/latex-ubuntu:cache,mode=max' || '' }}
+          build-args: |
+            CACHE=${{ env.CACHE }}
+            TAG=${{ env.TAG }}
+          platforms: linux/amd64,linux/arm64
+          outputs: |
+            type=registry,push=true,ref=ghcr.io/mo-mo-666/latex-ubuntu:cache
+            type=image,push=true,ref=ghcr.io/mo-mo-666/latex-ubuntu:${{ env.TAG }}
+        env:
+          DOCKER_BUILDKIT: 1
+          BUILDKIT_INLINE_CACHE: 1
