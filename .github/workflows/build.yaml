@@ -53,4 +53,4 @@ jobs:
         with:
           context: .
           push: ${{ env.PUSH }}
-          tags: ghcr.io/${{ github.repository }}:${{ env.TAG }}
+          tags: ghcr.io/mo-mo-666/latex-ubuntu:${{ env.TAG }}
